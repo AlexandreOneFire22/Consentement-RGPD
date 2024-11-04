@@ -13,7 +13,11 @@ class Vue_ConsentementRGPD extends Vue_Composant
 
     function donneTexte(): string
     {
-        $str= "<H1>Objet du traitement (finalité et base légale)</H1>
+        $str = "
+<form style='display: contents'>
+        
+<table style='display: inline-block'> 
+        <H1>Objet du traitement (finalité et base légale)</H1>
 La société ABCD, dont le siège est situé à CONFIANCE (96 000), Rue la Transparence, dispose d’un site internet de vente en ligne. Ce site permet de recevoir les commandes de nos clients et les données collectées à cette occasion sont enregistrées et traitées dans un fichier clients.
 
 Ce fichier permet de :
@@ -69,8 +73,29 @@ Rue la Transparence
 (NB : si vous n’avez pas de DPO, indiquez des coordonnées précises où exercer ces droits dans l’entreprise).
 
 Si vous estimez, après avoir contacté la société ABCD, que vos droits « Informatique et Libertés » ne sont pas respectés, vous pouvez adresser une réclamation en ligne à la CNIL.
+        
+        <tr>
+            <td>
+                <label>J'accepte de donner mes données </label>
+            </td>
+            <td>
+                <input type='checkbox' name='checkbox' required>
+            </td>
+            <td>
+                <button type='submit' id='RGPD' name='action' value='AccepterRGPD'>
+                 accepter
+                 </button>
+            </td>
+        </tr>
+        <tr>
+            <td>
+                <button type='submit' id='RGPD' name='action' value='RefuserRGPD'>
+                 Rufuser
+                 </button>
+            </td>
+        </tr>
+    </form>";
 
-";
         //je crois avoir oublié la fin de la page...
         return $str;
     }

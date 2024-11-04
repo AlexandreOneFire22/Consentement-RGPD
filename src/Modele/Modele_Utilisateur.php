@@ -201,4 +201,29 @@ SET motDePasse = :parammotDePasse ');
         return $reponse;
     }
 
+
+
+    /**
+     * @param $connexionPDO
+     * @param $idUtilisateur
+     * @param $dateAcceptionRGPD
+     * @param $IP
+     * @return mixed
+     */
+    static function Utilisateur_Modifier_ConsentementRGPD($idUtilisateur, $dateAcceptionRGPD, $IP)
+
+    {
+        $connexionPDO = Singleton_ConnexionPDO::getInstance();
+        $requetePreparee = $connexionPDO->prepare(
+            'UPDATE `utilisateur` 
+SET  	dateAcceptionRGPD = :dateAcceptionRGPD
+AND     IP = :IP
+WHERE idUtilisateur = :paramidUtilisateur');
+        $requetePreparee->bindParam('dateAcceptionRGPD', $dateAcceptionRGPD);
+        $requetePreparee->bindParam('IP', $IP);
+        $requetePreparee->bindParam('paramidUtilisateur', $idUtilisateur);
+        $reponse = $requetePreparee->execute(); //$reponse boolean sur l'état de la requête
+        return $reponse;
+    }
+
 }
