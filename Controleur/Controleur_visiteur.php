@@ -45,7 +45,7 @@ switch ($action) {
                         echo "idCategorie_utilisateur : " . $_SESSION["idCategorie_utilisateur"];
                         //error_log("idCategorie_utilisateur : " . $_SESSION["idCategorie_utilisateur"]);
                       //  var_dump($utilisateur);
-                        if ($utilisateur["aAccepteRGPD"] ==1){
+                        if ($utilisateur["AccepterRGPD"] ==1){
                             switch ($utilisateur["idCategorie_utilisateur"]) {
                                 case 1:
                                     $_SESSION["typeConnexionBack"] = "administrateurLogiciel"; //Champ inutile, mais bien pour voir ce qu'il se passe avec des étudiants !
@@ -74,7 +74,8 @@ switch ($action) {
                                     break;
                             }
                         }else{
-                            $Vue->addToCorps(new \App\Vue\Vue_ConsentementRGPD());
+                            require __DIR__."/../Controleur/Controleur_AccepterRGPD.php";
+                            //$Vue->addToCorps(new \App\Vue\Vue_ConsentementRGPD());
                         }
 
                     } else {//mot de passe pas bon
