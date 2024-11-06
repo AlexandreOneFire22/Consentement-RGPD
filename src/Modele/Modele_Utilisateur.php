@@ -202,7 +202,6 @@ SET motDePasse = :parammotDePasse ');
     }
 
 
-
     /**
      * @param $connexionPDO
      * @param $idUtilisateur
