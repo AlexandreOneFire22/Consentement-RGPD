@@ -1,8 +1,12 @@
 <?php
 
+use App\Modele\Modele_Entreprise;
+use App\Modele\Modele_Salarie;
 use App\Vue\Vue_ConsentementRGPD;
+use App\Vue\Vue_Menu_Administration;
 use App\Vue\Vue_Structure_BasDePage;
 use App\Vue\Vue_Structure_Entete;
+use App\Modele\Modele_Utilisateur;
 
 
 $Vue->setEntete(new Vue_Structure_Entete());
@@ -11,9 +15,12 @@ $Vue->setEntete(new Vue_Structure_Entete());
 switch ($action) {
     case "AccepterRGPD" :
         $ip = $_SERVER['REMOTE_ADDR'];
-        $now = date_create_from_format("Y-m-d",new DateTime());
+        $now = new DateTime();
+        $now = $now->format("Y-m-d");
+
         Modele_Utilisateur::Utilisateur_Modifier_ConsentementRGPD($_SESSION["idUtilisateur"],$now,$ip);
-        switch ($utilisateur["idCategorie_utilisateur"]) {
+
+        switch ($_SESSION["idCategorie_utilisateur"]) {
             case 1:
                 $_SESSION["typeConnexionBack"] = "administrateurLogiciel"; //Champ inutile, mais bien pour voir ce qu'il se passe avec des étudiants !
                 $Vue->setMenu(new Vue_Menu_Administration($_SESSION["typeConnexionBack"]));
@@ -31,7 +38,7 @@ switch ($action) {
                 break;
             case 4:
                 $_SESSION["typeConnexionBack"] = "salarieEntrepriseCliente";
-                $_SESSION["idSalarie"] = $utilisateur["idUtilisateur"];
+                $_SESSION["idSalarie"] = $_SESSION["idUtilisateur"];
                 $_SESSION["idEntreprise"] = Modele_Salarie::Salarie_Select_byId($_SESSION["idUtilisateur"])["idEntreprise"];
                 include "./Controleur/Controleur_Catalogue_client.php";
                 break;

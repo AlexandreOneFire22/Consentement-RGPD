@@ -218,6 +218,7 @@ SET motDePasse = :parammotDePasse ');
             'UPDATE `utilisateur` 
 SET  	dateAcceptionRGPD = :dateAcceptionRGPD
 AND     IP = :IP
+AND     aAccepteRGPD = 1
 WHERE idUtilisateur = :paramidUtilisateur');
         $requetePreparee->bindParam('dateAcceptionRGPD', $dateAcceptionRGPD);
         $requetePreparee->bindParam('IP', $IP);

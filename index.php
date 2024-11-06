@@ -47,7 +47,13 @@ else
 
 switch ($typeConnexion) {
     case "visiteur" :
-        include "Controleur/Controleur_visiteur.php";
+        switch($case) {
+            case "RGPD":
+                include ("./Controleur/Controleur_AccepterRGPD.php");
+                break;
+            default :
+                include "Controleur/Controleur_visiteur.php";
+        }
         break;
     case "gestionnaireCatalogue":
     case "commercialCafe":

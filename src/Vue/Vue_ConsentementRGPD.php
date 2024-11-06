@@ -94,6 +94,7 @@ Si vous estimez, après avoir contacté la société ABCD, que vos droits « Inf
                  </button>
             </td>
         </tr>
+        <input type='hidden' name='case' value ='RGPD'>
     </form>";
 
         //je crois avoir oublié la fin de la page...
